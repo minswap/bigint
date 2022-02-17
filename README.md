@@ -1,6 +1,6 @@
 # bigint
 
-Go's `big.Int` is mutable to enable flexibily and performance tuning but sometimes immutability is more desired. To write immutable code with `big.Int` we need to be really verbose like `new(big.Int).Add(a, b)`. This package provides an immutable wrapper around `big.Int`. Other than the immutability, it tries to be as similar to `big.Int` as possible. Examples:
+Go's `big.Int` is mutable to enable flexibility in performance tuning but sometimes immutability is more desired. To write immutable code with `big.Int` we need to be really verbose like `new(big.Int).Add(a, b)`. This package provides an immutable wrapper around `big.Int`. Other than the immutability, it tries to be as similar to `big.Int` as possible. Examples:
 
 | int                 | big.Int                                     | bigint                       |
 | ------------------- | ------------------------------------------- | ---------------------------- |
