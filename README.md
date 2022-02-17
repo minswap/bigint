@@ -6,6 +6,7 @@ Go's `big.Int` is mutable to enable flexibility in performance tuning but someti
 | ------------------- | ------------------------------------------- | ---------------------------- |
 | 42                  | big.NewInt(42)                              | bigint.New(42)               |
 | strconv.Atoi("123") | new(big.Int).SetString("123", 10)           | bigint.FromString("123", 10) |
+| a := b              | a := new(big.Int).Set(b)                    | a := b                       |
 | a+b                 | new(big.Int).Add(a, b)                      | a.Add(b)                     |
 | a\*(b+c)            | new(big.Int).Mul(a, new(big.Int).Add(b, c)) | a.Mul(b.Add(c))              |
 | a == b              | a.Cmp(b) == 0                               | a.EQ(b)                      |
