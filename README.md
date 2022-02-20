@@ -8,7 +8,7 @@ Go's `big.Int` is mutable to enable flexibility in performance tuning but someti
 | `strconv.Atoi("123")` | `new(big.Int).SetString("123", 10)`           | `bigint.FromString("123", 10)` |
 | `a := b`              | `a := new(big.Int).Set(b)`                    | `a := b`                       |
 | `a := b + c`          | `a := new(big.Int).Add(b, c)`                 | `a := b.Add(c)`                |
-| `a += b`              | `a.Add(b)`                                    | `a = a.Add(b)`                 |
+| `a += b`              | `a.Add(a, b)`                                 | `a = a.Add(b)`                 |
 | `a + b * c`           | `new(big.Int).Add(a, new(big.Int).Mul(b, c))` | `a.Add(b.Mul(c))`              |
 | `(a + b) * c`         | `new(big.Int).Mul(new(big.Int).Add(a, b), c)` | `a.Add(b).Mul(c)`              |
 | `a == b`              | `a.Cmp(b) == 0`                               | `a.EQ(b)`                      |
