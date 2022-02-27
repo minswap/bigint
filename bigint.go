@@ -185,6 +185,10 @@ func (x BigInt) And(y BigInt) BigInt {
 	return BigInt{*new(big.Int).And(&x.i, &y.i)}
 }
 
+func (x BigInt) AndNot(y BigInt) BigInt {
+	return BigInt{*new(big.Int).AndNot(&x.i, &y.i)}
+}
+
 func (x BigInt) Or(y BigInt) BigInt {
 	return BigInt{*new(big.Int).Or(&x.i, &y.i)}
 }
@@ -197,8 +201,43 @@ func (x BigInt) Not(y BigInt) BigInt {
 	return BigInt{*new(big.Int).Not(&x.i)}
 }
 
+// Bit returns the value of the i'th bit of x. That is, it
+// returns (x>>i)&1. The bit index i must be >= 0.
+func (x BigInt) Bit(i int) uint {
+	return x.i.Bit(i)
+}
+
+// BitLen returns the length of the absolute value of x in bits.
+// The bit length of 0 is 0.
+func (x BigInt) BitLen() int {
+	return x.i.BitLen()
+}
+
+// Bytes returns the absolute value of x as a big-endian byte slice.
+//
+// To use a fixed length slice, or a preallocated one, use FillBytes.
+func (x BigInt) Bytes() []byte {
+	return x.i.Bytes()
+}
+
+// Cmp compares x and y and returns:
+//
+//   -1 if x <  y
+//    0 if x == y
+//   +1 if x >  y
+//
 func (x BigInt) Cmp(y BigInt) int {
 	return x.i.Cmp(&y.i)
+}
+
+// CmpAbs compares the absolute values of x and y and returns:
+//
+//   -1 if |x| <  |y|
+//    0 if |x| == |y|
+//   +1 if |x| >  |y|
+//
+func (x BigInt) CmpAbs(y BigInt) int {
+	return x.i.CmpAbs(&y.i)
 }
 
 func (x BigInt) EQ(y BigInt) bool {
@@ -240,7 +279,7 @@ func (x BigInt) Sqrt() BigInt {
 // If a == 0 and b != 0, GCD sets z = |b|, x = 0, y = sign(b) * 1.
 //
 // If a != 0 and b == 0, GCD sets z = |a|, x = sign(a) * 1, y = 0.
-func GCD(x, y, a, b *BigInt) BigInt {
+func GCD(x, y *BigInt, a, b BigInt) BigInt {
 	return BigInt{*new(big.Int).GCD(&x.i, &y.i, &a.i, &b.i)}
 }
 
