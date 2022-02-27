@@ -30,7 +30,7 @@ func Max(a ...BigInt) BigInt {
 func Sum(a ...BigInt) BigInt {
 	ret := New(0)
 	for _, x := range a {
-		ret.Add(x)
+		ret = ret.Add(x)
 	}
 	return ret
 }
@@ -39,7 +39,7 @@ func Sum(a ...BigInt) BigInt {
 func Product(a ...BigInt) BigInt {
 	ret := New(1)
 	for _, x := range a {
-		ret.Mul(x)
+		ret = ret.Mul(x)
 	}
 	return ret
 }
